@@ -10,7 +10,7 @@ $ docker-compose up
 ## DB作成
 
 ```bash
-$ docker-compose run web rails db:create
+$ docker-compose exec api rails db:create
 ```
 
 ## Dockerfileやdocker-compose.ymlの変更を反映
