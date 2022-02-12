@@ -1,21 +1,8 @@
-FROM ruby:2.5.3
+FROM ruby:3.1.0
 
-RUN apt-get update -qq && \
-    apt-get install -y build-essential \
-                       libpq-dev \
-                       nodejs \
-                       mysql-client
+WORKDIR /app
 
-# make work dir
-RUN mkdir /app_name
-
-# named work dir APP_ROOT
-ENV APP_ROOT /app_name
-WORKDIR $APP_ROOT
-
-# Add host side Gemfile
-ADD ./Gemfile $APP_ROOT/Gemfile
-ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
+COPY ./Gemfile /app/Gemfile
+# COPY ./Gemfile.lock /app/Gemfile.lock
 
 RUN bundle install
-ADD . $APP_ROOT
